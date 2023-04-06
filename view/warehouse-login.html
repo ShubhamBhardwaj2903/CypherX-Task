@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Login V1</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="/public/css/warehouse-login.css">
+</head>
+
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+					<lottie-player src="https://assets4.lottiefiles.com/packages/lf20_pprxh53t.json"
+						background="transparent" speed="1" style="width: 300px; height: 300px;" loop
+						autoplay></lottie-player>
+				</div>
+
+				<form class="login100-form validate-form" id="loginForm">
+					<span class="login100-form-title">
+						Warehouse Login
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="email" placeholder="Email" id="loginEmail">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input class="input100" type="password" name="pass" placeholder="Password" id="loginPassword">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<a class="login100-form-btn" type="submit" href="/view/farmerPrediction.html">
+							Login
+						</a>
+
+						<div class="text-center p-t-12">
+							<a class="txt2" href="../Views/warehouse-register.html">
+								Create your Account
+								<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+							</a>
+						</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/select2/select2.min.js"></script>
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+
+
+</body>
+<script type="module">
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+	import { getFirestore, setDoc, addDoc, updateDoc, deleteDoc, getDocs, doc, collection } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
+	import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+	const signUp = document.getElementById("signUp");
+	var loginForm = document.getElementById("loginForm");
+	// var loginEmailField = document.getElementById("loginEmail").value;
+	// var loginPasswordField = document.getElementById("loginPassword").value;
+	// var messageDiv = document.getElementById("message");
+	var warehousedataForm = document.querySelector("#warehousedataForm");
+	localStorage.removeItem('loggedIn');
+	const logOut = document.querySelector('.logout')
+
+	console.log("hello");
+	// Your web app's Firebase configuration
+	const firebaseConfig = {
+		apiKey: "AIzaSyCMsJalWUl6wUV_FD4C44TRF8rjBgK5Nic",
+		authDomain: "pravidhi-f594d.firebaseapp.com",
+		databaseURL: "https://pravidhi-f594d-default-rtdb.firebaseio.com",
+		projectId: "pravidhi-f594d",
+		storageBucket: "pravidhi-f594d.appspot.com",
+		messagingSenderId: "381566880784",
+		appId: "1:381566880784:web:3fc0de71affe76c2088e95"
+	};
+
+	// Initialize Firebase
+	const app = initializeApp(firebaseConfig);
+	const db = getFirestore(app);
+	const auth = getAuth();
+	const wareHouseColRef = collection(db, 'warehouse')
+	loginForm.addEventListener('click', (e) => {
+		event.preventDefault();
+		console.log(loginForm);
+		const loginEmail = loginForm.elements["loginEmail"].value;
+		const loginPassword = loginForm.elements["loginPassword"].value;
+
+		console.log(loginEmail, loginPassword);
+		signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+			.then((userCredential) => {
+				localStorage.setItem('loggedIn', true);
+				console.log("HELLO: " + userCredential.user.uid);
+				var user = userCredential.user;
+				const uid = userCredential.user.uid;
+				console.log(uid, "bsdk");
+				localStorage.setItem('uid', uid);
+				const userRef = doc(wareHouseColRef, uid);
+
+				console.log(uid)
+				getDocs(wareHouseColRef).then((snapshot) => {
+
+					console.log("hello from firestore");
+					let wareHouseDocs = [];
+					snapshot.docs.forEach((docs) => {
+						const detailsRef = collection(userRef, "warehouse-details")
+						getDocs(detailsRef).then((elements) => {
+							elements.docs.forEach((doc) => {
+								console.log(doc.data().warehouseName);
+								// console.log(doc.data().warehouseName, "Hello motherFucker", doc.data().cropDetails);
+
+								wareHouseDocs.push(doc.data())
+							});
+						})
+					});
+					console.log(wareHouseDocs);
+				}).catch((err) => {
+					console.log(err.message);
+				})
+
+
+
+
+				warehousedataForm.addEventListener('submit', (e) => {
+					event.preventDefault();
+					const warehouseName = warehousedataForm.elements["warehousename"].value;
+					const warehouseTotalQuantity = warehousedataForm.elements["warehouseTotalQuantity"].value;
+					const crops = warehousedataForm.elements['crop[]'];
+					const cropQtys = warehousedataForm.elements['cropQty[]'];
+					const userDocRef = doc(wareHouseColRef, uid);
+					const warehouseDetailsRef = collection(userDocRef, "warehouse-details");
+					const warehouseNameRef = doc(warehouseDetailsRef, warehouseName);
+
+					const cropDetails = [];
+					const cropImages = [
+						{ name: "chole", path: "public/images/crops/chole.jpg" },
+						{ name: "coffee beans", path: "public/images/crops/coffee beans.jpg" },
+						{ name: "lentils", path: "public/images/crops/lentils.jpg" },
+						{ name: "maize", path: "public/images/crops/maize.jpg" },
+						{ name: "moong dal", path: "public/images/crops/moong dal.jpg" },
+						{ name: "moth beans", path: "public/images/crops/moth beans.jpg" },
+						{ name: "pigeon peas", path: "public/images/crops/pigeon peas.jpg" },
+						{ name: "rajma", path: "public/images/crops/rajma.jpg" },
+						{ name: "rice", path: "public/images/crops/rice.jpg" },
+						{ name: "wheat", path: "public/images/crops/wheat.jpg" },
+					];
+
+					for (let i = 0; i < crops.length; i++) {
+						// console.log(cropImages[i].path);
+
+						if (crops[i].checked && cropQtys[i].value !== '' && cropImages[i].name === crops[i].value) {
+							cropDetails.push({
+								cropName: crops[i].value,
+								cropQty: parseInt(cropQtys[i].value),
+								cropImages: cropImages[i].path
+							});
+						}
+					}
+
+					console.log(cropDetails, "crops", warehouseName, warehouseTotalQuantity);
+
+					setDoc(warehouseNameRef, {
+						warehouseName: warehouseName,
+						warehouseTotalQuantity: warehouseTotalQuantity,
+						cropDetails: cropDetails
+					});
+
+					updateDoc(userRef, {
+						warehouseName: warehouseName
+					})
+					alert("warehouse Name added")
+					// getDocs(wareHouseColRef).then((snapshot) => {
+					// 	console.log("hello from firestore");
+					// 	let wareHouseDocs = [];
+					// 	snapshot.docs.forEach((doc) => {
+					// 		// wareHouseDocs.push({ ...doc.data(), id: doc.id })
+					// 		getDocs(wareHouseColRef, userDocRef, warehouseDetailsRef).then((subCol) => {
+					// 			subCol.docs.forEach((element) => {
+
+					// 				wareHouseDocs.push({ ...element.data() })
+					// 			});
+					// 		})
+					// 	});
+					// 	console.log(wareHouseDocs);
+					// }).catch((err) => {
+					// 	console.log(err.message);
+					// })
+
+					console.log(uid);
+
+
+				});
+			})
+	})
+
+</script>
+
+</html>

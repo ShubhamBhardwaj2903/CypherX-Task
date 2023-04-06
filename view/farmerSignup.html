@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Sign Up Form</title>
+</head>
+
+<body>
+	<h1>Sign Up Form</h1>
+	<!-- <form action="" method="post"> -->
+	<label for="name">Name:</label>
+	<input type="text" id="name" aria-label="name" name="name"><br><br>
+
+	<label for="email">Email:</label>
+	<input type="email" id="email" aria-label="email" name="email"><br><br>
+
+	<label for="password">Password:</label>
+	<input type="password" id="password" name="password"><br><br>
+
+	<label for="contact">Contact Number:</label>
+	<input type="tel" id="contact" name="contact"><br><br>
+
+	<label for="city">City:</label>
+	<input type="text" id="city" name="city" required>
+	<br><br>
+
+	<label for="address">Address:</label>
+	<input type="text" id="address" name="address" required>
+	<br><br>
+	<label for="state">State:</label>
+	<input type="text" id="state" name="state" required>
+	<br><br>
+	<!-- 
+	<label for="ph">Soil pH Level:</label>
+	<input type="number" id="ph" name="ph" step="0.1" min="0" max="14"><br><br>
+
+	<label for="temperature">Soil Temperature:</label>
+	<input type="number" id="temperature" name="temperature" step="0.1" min="-273.15"><br><br>
+
+	<label for="soil-type">Soil Type:</label>
+	<select id="soil-type" name="soil-type">
+		<option value="sandy">Sandy</option>
+		<option value="loamy">Loamy</option>
+		<option value="clay">Clay</option>
+		<option value="peaty">Peaty</option>
+		<option value="chalky">Chalky</option>
+	</select><br><br> -->
+
+	<input type="submit" id='signUp' name="signup_submit" value="Sign up" />
+
+	<!-- </form> -->
+	<form id="loginForm">
+		<label for="loginEmail">Email:</label>
+		<input type="email" id="loginEmail" name="loginEmail">
+
+		<label for="loginPassword">Password:</label>
+		<input type="password" id="loginPassword" name="loginPassword">
+
+		<button type="submit">Log In</button>
+	</form>
+	<button class="logout">Log Out</button>
+	<a href="/view/warehouseInfo.html">warehouseInfo</a>
+	<div id="message"></div>
+
+
+
+
+	<form id="cropForm">
+
+		<div>
+			<label for="crop1">chole 1:</label>
+			<input type="checkbox" id="crop1" name="crop[]" value="chole">
+			<input type="number" id="crop1Qty" name="cropQty[]" min="0">
+		</div>
+		<div>
+			<label for="crop2">coffee beans 2:</label>
+			<input type="checkbox" id="crop2" name="crop[]" value="coffee beans">
+			<input type="number" id="crop2Qty" name="cropQty[]" min="0">
+		</div>
+		<div>
+			<label for="crop2">lentils 3:</label>
+			<input type="checkbox" id="crop2" name="crop[]" value="lentils">
+			<input type="number" id="crop2Qty" name="cropQty[]" min="0">
+		</div>
+		<div>
+			<label for="crop2">maize 3:</label>
+			<input type="checkbox" id="crop2" name="crop[]" value="maize">
+			<input type="number" id="crop2Qty" name="cropQty[]" min="0">
+		</div>
+		<div>
+			<label for="crop2">moong dal 4:</label>
+			<input type="checkbox" id="crop2" name="crop[]" value="moong dal">
+			<input type="number" id="crop2Qty" name="cropQty[]" min="0">
+		</div>
+		<div>
+			<label for="crop2">moth beans 5:</label>
+			<input type="checkbox" id="crop2" name="crop[]" value="moth beans">
+			<input type="number" id="crop2Qty" name="cropQty[]" min="0">
+		</div>
+		<div>
+			<label for="crop2">pigeon peas 6:</label>
+			<input type="checkbox" id="crop2" name="crop[]" value="pigeon peas">
+			<input type="number" id="crop2Qty" name="cropQty[]" min="0">
+		</div>
+		<div>
+			<label for="crop2">rajma 7:</label>
+			<input type="checkbox" id="crop2" name="crop[]" value="rajma">
+			<input type="number" id="crop2Qty" name="cropQty[]" min="0">
+		</div>
+		<div>
+			<label for="crop2">rice 8:</label>
+			<input type="checkbox" id="crop2" name="crop[]" value="rice">
+			<input type="number" id="crop2Qty" name="cropQty[]" min="0">
+		</div>
+		<div>
+			<label for="crop2">blackgram 9:</label>
+			<input type="checkbox" id="crop2" name="crop[]" value="blackgram">
+			<input type="number" id="crop2Qty" name="cropQty[]" min="0">
+		</div>
+		<!-- repeat for crop3 to crop10 -->
+		<div>
+			<label for="crop10">wheat 10:</label>
+			<input type="checkbox" id="crop10" name="crop[]" value="wheat">
+			<input type="number" id="crop10Qty" name="cropQty[]" min="0">
+		</div>
+
+		<label for="ph">Soil pH Level:</label>
+		<input type="number" id="ph" name="ph" step="0.1" min="0" max="14"><br><br>
+
+		<label for="temperature">Temperature:</label>
+		<input type="number" id="temperature" name="temperature" step="0.1" min="-273.15"><br><br>
+
+		<label for="soil-type">Soil Type:</label>
+		<select id="soil-type" name="soil-type">
+			<option value="sandy">Sandy</option>
+			<option value="loamy">Loamy</option>
+			<option value="clay">Clay</option>
+			<option value="peaty">Peaty</option>
+			<option value="chalky">Chalky</option>
+		</select><br><br>
+		<button type="submit">Submit</button>
+	</form>
+
+
+</body>
+<script type="module">
+	const signUp = document.getElementById("signUp");
+	const cropForm = document.querySelector("#cropForm");
+	const crops = cropForm.elements['crop[]'];
+	const cropQtys = cropForm.elements['cropQty[]'];
+	const pH = cropForm.elements['ph'];
+	const temperature = cropForm.elements['temperature'];
+	const soilType = cropForm.elements['soil-type'];
+	var loginForm = document.getElementById("loginForm");
+	var loginEmailField = document.getElementById("loginEmail");
+	var loginPasswordField = document.getElementById("loginPassword");
+	var messageDiv = document.getElementById("message");
+	const logOut = document.querySelector('.logout')
+
+
+
+	console.log(crops, pH, temperature, soilType);
+
+
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+	import { getFirestore, setDoc, addDoc, updateDoc, deleteDoc, getDocs, doc, collection } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
+	import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+
+	// Your web app's Firebase configuration
+	const firebaseConfig = {
+		apiKey: "AIzaSyCMsJalWUl6wUV_FD4C44TRF8rjBgK5Nic",
+		authDomain: "pravidhi-f594d.firebaseapp.com",
+		projectId: "pravidhi-f594d",
+		storageBucket: "pravidhi-f594d.appspot.com",
+		messagingSenderId: "381566880784",
+		appId: "1:381566880784:web:3fc0de71affe76c2088e95"
+	};
+
+	// Initialize Firebase
+	const app = initializeApp(firebaseConfig);
+	const db = getFirestore(app);
+	const auth = getAuth();
+	// const user = auth.currentUser;
+	const farmerColRef = collection(db, 'farmers')
+	
+	// const userDocRef = doc(farmerColRef, 'user');
+	// const cropInfoRef = collection(userDocRef, 'cropInfo');
+	// const croptimestampRef = collection(cropInfoRef, Date);
+	localStorage.removeItem('loggedIn');
+
+
+	signUp.addEventListener('click', (e) => {
+
+		// console.log(Date.UTC, "Date");
+		var name = document.getElementById('name').value;
+		var email = document.getElementById('email').value;
+		var password = document.getElementById('password').value;
+		var contact = document.getElementById('contact').value
+		var city = document.getElementById('city').value;
+		var address = document.getElementById('address').value;
+		var state = document.getElementById('state').value;
+		localStorage.setItem('name', name)
+		console.log(email, password);
+		// console.log(user.uid, "username");
+		// console.log(name, email, password, contactNo, pH, temperature, soilType);
+		createUserWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+				const user = userCredential.user;
+
+				const uid = user.uid;
+				// console.log(user.uid, "lol", Date);
+				const userDocRef = doc(farmerColRef, uid);
+				const cropInfoRef = collection(userDocRef, "crop-Info");
+				setDoc(userDocRef, {
+					name: name,
+					email: email,
+					password: password,
+					contact: contact,
+					city: city,
+					Address: address,
+					state: state
+				});
+
+				alert('user created!');
+				// getDocs();
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+
+				alert(errorMessage);
+			});
+	});
+
+
+	loginForm.addEventListener('submit', (e) => {
+		event.preventDefault();
+
+
+		var email = loginEmailField.value;
+		var password = loginPasswordField.value;
+
+		signInWithEmailAndPassword(auth, email, password).then((userCredentials) => {
+			localStorage.setItem('loggedIn', true);
+			var user = userCredentials.user;
+			var uid = userCredentials.user.uid;
+			var today = new Date();
+			var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+			console.log(date);
+			const userDocRef = doc(farmerColRef, uid);
+			const cropInfoRef = collection(userDocRef, "crop-Info");
+			const cropInfoDateRef = doc(cropInfoRef, date);
+
+			getDocs(farmerColRef).then((snapshot)=>{
+				snapshot.docs.forEach((element) => {
+					const userData = element.data()
+					console.log(userData.name, userData.contact, userData.Address);
+					localStorage.setItem('farmerName', userData.name);
+					localStorage.setItem('farmerContact', userData.contact);
+					localStorage.setItem('farmerAddress', userData.Address);
+				});
+			})
+			console.log("hello", uid);
+
+			cropForm.addEventListener('submit', (e) => {
+				event.preventDefault();
+				const cropDetails = [];
+				const cropImages = [
+					{ name: "chole", path: "public/images/crops/chole.jpg" },
+					{ name: "coffee beans", path: "public/images/crops/coffee beans.jpg" },
+					{ name: "lentils", path: "public/images/crops/lentils.jpg" },
+					{ name: "maize", path: "public/images/crops/maize.jpg" },
+					{ name: "moong dal", path: "public/images/crops/moong dal.jpg" },
+					{ name: "moth beans", path: "public/images/crops/moth beans.jpg" },
+					{ name: "pigeon peas", path: "public/images/crops/pigeon peas.jpg" },
+					{ name: "rajma", path: "public/images/crops/rajma.jpg" },
+					{ name: "rice", path: "public/images/crops/rice.jpg" },
+					{ name: "wheat", path: "public/images/crops/wheat.jpg" },
+				];
+
+				for (let i = 0; i < crops.length; i++) {
+					// console.log(cropImages[i].path);
+
+					if (crops[i].checked && cropQtys[i].value !== '' && cropImages[i].name === crops[i].value) {
+						cropDetails.push({
+							cropName: crops[i].value,
+							cropQty: parseInt(cropQtys[i].value),
+							cropImages: cropImages[i].path
+						});
+					}
+				}
+
+				console.log(cropDetails, "cropDetails", pH.value, temperature.value, soilType.value);
+
+
+				setDoc(cropInfoDateRef, {
+					cropDetails: cropDetails,
+					pH: pH.value,
+					temperature: temperature.value,
+					soilType: soilType.value
+				});
+				alert("crops data added")
+
+			})
+
+
+		}).catch((err) => {
+			console.log(err);
+		})
+	})
+
+	logOut.addEventListener('click', () => {
+		signOut(auth)
+			.then(() => {
+				console.log("user signedOut");
+				localStorage.removeItem('loggedIn');
+			})
+			.catch((err) => {
+				console.log("User signedOut");
+			})
+	});
+</script>
+
+</html>

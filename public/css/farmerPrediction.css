@@ -1,0 +1,177 @@
+@font-face {
+    font-family: Poppins-Regular;
+    src: url('../fonts/poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Bold;
+    src: url('../fonts/poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../fonts/poppins/Poppins-Medium.ttf');
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: var(--font-poppins);
+}
+input {
+    outline: none;
+    border: none;
+}
+
+textarea {
+    outline: none;
+    border: none;
+}
+
+textarea:focus,
+input:focus {
+    border-color: transparent !important;
+}
+
+button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+iframe {
+    border: none !important;
+}
+
+.main {
+    width: 100%;
+    margin: 0 auto;
+    background: #33A7FF;
+}
+
+.container {
+    width: 70%;
+    min-height: 100vh;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background: white;
+    border-radius: 15px;
+    left: 15%;
+}
+
+.farmer-form {
+    width: 100%;
+    position: relative;
+    background: white;
+    border-radius: 15px;
+    padding-bottom: 30px;
+    padding-top: 40px;
+}
+
+.farmer-form-title {
+    font-family: "Poppins";
+    font-size: 25px;
+    color: #333333;
+    line-height: 1.2;
+    text-align: center;
+    position: relative;
+    top: 10%;
+    width: 100%;
+    display: block;
+    padding-bottom: 30px;
+}
+
+.crop,.district_name2 {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+
+.crop,.district_name2,.field_area2,.production2,.nutrients2 {
+    font-family: "Poppins";
+    font-size: 20px;
+    line-height: 1.5;
+    color: #666666;
+
+    display: block;
+    width: 100%;
+    background: #e6e6e6;
+    height: 50px;
+    border-radius: 10px;
+    padding: 0 30px 0 30px;
+}
+
+.crops,
+.soil-ph,
+.temperature,
+.soil-type,.district_name,.field_area,.production,.nutrients,.year {
+    position: relative;
+    width: 60%;
+    left: 20%;
+}
+
+.cropname,
+.soil-ph1,
+.temp1,
+.soil-type1,
+.dropdown,
+.district_name1,.field_area1,.production1,.nutrients1,.year1 {
+    font-size: 20px;
+    font-family: "Poppins";
+}
+
+.soil-type {
+    padding-bottom: 20px;
+}
+.dropdown{
+    border-radius: 4px;
+}
+.btn-Submit {
+    font-size: 23px;
+    font-family: "Poppins";
+    background-color: #3770FF;
+    color: #fff;
+    padding: 10px 20px;
+    border: 2px;
+    border-radius: 5px;
+    position: relative;
+    width: 60%;
+    left: 20%;
+}
+
+@media (max-width: 992px) {
+    .container {
+        padding: 100px 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 100px 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 100px 0px;
+    }
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Prediction</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="utils.css">
+    <link rel="stylesheet" href="/public/css/farmerPrediction.css">
+    <link rel="stylesheet" href="/public/css/navbar.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" />
+</head>
+
+<body>
+
+    <div class="main">
+    </div>
+    <nav>
+        <div class="nav-center">
+            <div class="nav-header">
+                <div class="parent">
+                    <div class="विधि">विधि</div>
+                    <div class="pra">Pra</div>
+                    <img class="image-55-icon" alt="" src="/public/images/leaf.png" />
+                </div>
+                <button class="nav-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <!-- links -->
+            <ul class="links">
+                <li>
+                    <a href="index.html" style="text-decoration: none;">Home</a>
+                </li>
+                <li>
+                    <a href="projects.html" style="text-decoration: none;">Restock</a>
+                </li>
+                <li>
+                    <a href="contact.html" style="text-decoration: none;">FAQ's</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br><br>
+    <div class="container">
+        <form class="farmer-form">
+            <span class="farmer-form-title">
+                Boost your production with our Prediction!!!
+            </span>
+
+            <div class="crops" font-style="Poppins Medium">
+                <label class="cropname" for="crop">Chole</label>
+                <input type="checkbox" id="crop1" name="crop[]" value="chole">
+                <input placeholder="Quantity1" class="crop" type="number" id="crop1Qty" name="cropQty[]" min="0">
+            </div>
+
+            <div class="crops">
+                <label class="cropname" for="crop2">Coffee Beans</label>
+                <input type="checkbox" id="crop2" name="crop[]" value="coffee beans">
+                <input placeholder="Quantity2" class="crop" type="number" id="crop2Qty" name="cropQty[]" min="0">
+            </div>
+            <div class="crops">
+                <label class="cropname" for="crop2">Lentils</label>
+                <input type="checkbox" id="crop3" name="crop[]" value="lentils">
+                <input placeholder="Quantity3" class="crop" type="number" id="crop2Qty" name="cropQty[]" min="0">
+            </div>
+            <div class="crops">
+                <label class="cropname" for="crop2">Maize</label>
+                <input type="checkbox" id="crop4" name="crop[]" value="maize">
+                <input placeholder="Quantity4" class="crop" type="number" id="crop2Qty" name="cropQty[]" min="0">
+            </div>
+            <div class="crops">
+                <label class="cropname" for="crop2">Moong Dal</label>
+                <input type="checkbox" id="crop5" name="crop[]" value="moong dal">
+                <input placeholder="Quantity5" class="crop" type="number" id="crop2Qty" name="cropQty[]" min="0">
+            </div>
+            <div class="crops">
+                <label class="cropname" for="crop2">Moth Beans</label>
+                <input type="checkbox" id="crop6" name="crop[]" value="moth beans">
+                <input placeholder="Quantity6" class="crop" type="number" id="crop2Qty" name="cropQty[]" min="0">
+            </div>
+            <div class="crops">
+                <label class="cropname" for="crop2">Pigeon Peas</label>
+                <input type="checkbox" id="crop7" name="crop[]" value="pigeon peas">
+                <input placeholder="Quantity7" class="crop" type="number" id="crop2Qty" name="cropQty[]" min="0">
+            </div>
+            <div class="crops">
+                <label class="cropname" for="crop2">Rajma</label>
+                <input type="checkbox" id="crop8" name="crop[]" value="rajma">
+                <input placeholder="Quantity8" class="crop" type="number" id="crop2Qty" name="cropQty[]" min="0">
+            </div>
+            <div class="crops">
+                <label class="cropname" for="crop2">Rice</label>
+                <input type="checkbox" id="crop9" name="crop[]" value="rice">
+                <input placeholder="Quantity9" class="crop" type="number" id="crop2Qty" name="cropQty[]" min="0">
+            </div>
+            <div class="crops">
+                <label class="cropname" for="crop2">Blackgram</label>
+                <input type="checkbox" id="crop10" name="crop[]" value="blackgram">
+                <input placeholder="Quantity10" class="crop" type="number" id="crop2Qty" name="cropQty[]" min="0">
+            </div>
+
+            <div class="soil-ph">
+                <label class="soil-ph1" for="ph">Soil pH Level:</label>
+                <input placeholder="Select" class="crop" type="number" id="ph" name="ph" step="0.1" min="0" max="14">
+            </div>
+
+            <div class="temperature">
+                <label class="temp1" for="temperature">Temperature:</label>
+                <input placeholder="Select" class="crop" type="number" id="temperature" name="temperature" step="0.1"
+                    min="-273.15">
+            </div>
+
+            <div class="soil-type">
+                <label class="soil-type1" for="soil-type">Soil Type:</label>
+                <select class="dropdown" id="soil-type" name="soil-type">
+                    <option value="sandy">Sandy</option>
+                    <option value="loamy">Loamy</option>
+                    <option value="clay">Clay</option>
+                    <option value="peaty">Peaty</option>
+                    <option value="chalky">Chalky</option>
+                </select><br>
+            </div>
+
+
+            <div class="district_name">
+                <label class="district_name1">District name: </label>
+                <input class="district_name2" placeholder="e.g. : Thane" type="text" id="district">
+            </div>
+
+            <div class="field_area">
+                <label class="field_area1" for="area_of_field">Area of the field:</label>
+                <input class="field_area2" id="area_of_field" type="number" placeholder="Enter area in Hector">
+            </div><br>
+
+            <div class="production">
+                <label class="production1" for="production">Production:</label>
+                <input class="production2" id="production_qyantity" type="number"
+                    placeholder="Enter quantity in Quintals">
+            </div><br>
+
+            <div class="nutrients">
+                <label class="nutrients1" for="production">Nitrogen:</label>
+                <input class="nutrients2" id="N-content" type="text" placeholder="Enter nitrogen content">
+            </div><br>
+
+            <div class="nutrients">
+                <label class="nutrients1" for="production">Potassium:</label>
+                <input class="nutrients2" id="K-content" type="text" placeholder="Enter potassium content">
+            </div><br>
+
+            <div class="nutrients">
+                <label class="nutrients1" for="production">Phosphorus:</label>
+                <input class="nutrients2" id="PH-content" type="text" placeholder="Enter phosphorus content">
+            </div><br>
+
+            <div class="year">
+                <label class="year1" for="year">Season:</label>
+                <select class="dropdown" id="year" name="Year">
+                    <option value="rabi">Rabi</option>
+                    <option value="khalif">Khalif</option>
+                    <option value="autumn">Autumn</option>
+                    <option value="wholeYear">Whole Year</option>
+                </select>
+            </div><br>
+
+            <button class="btn-Submit" type="submit">Submit</button>
+        </form>
+    </div>
+    </div>
+
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
