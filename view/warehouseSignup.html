@@ -48,7 +48,7 @@
 		<input type="password" id="loginPassword" name="loginPassword">
 
 		<button type="submit">Log In</button>
-		<a href="/view/wareDashboard.html"> Dashboard </a>
+		<!-- <a href="/view/warehouse/wareDashboard.html"> Dashboard </a> -->
 	</form>
 	<button class="logout">Log Out</button>
 	<div id="message"></div>
@@ -117,7 +117,7 @@
 			<input type="checkbox" id="crop10" name="crop[]" value="wheat">
 			<input type="number" id="crop10Qty" name="cropQty[]" min="0">
 		</div>
-		<button type="submit">Submit</button>
+		<a type="submit" href="/view/warehouse/wareDashboard.html">Submit</a>
 	</form>
 </body>
 <script type="module">
@@ -324,6 +324,10 @@
 			.then(() => {
 				console.log("user signedOut");
 				localStorage.removeItem('loggedIn');
+				localStorage.removeItem('farmerAddress');
+				localStorage.removeItem('farmerContact');
+				localStorage.removeItem('farmerName');
+				localStorage.removeItem('uid');
 			})
 			.catch((err) => {
 				console.log("User signedOut");

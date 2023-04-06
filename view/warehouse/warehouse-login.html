@@ -49,7 +49,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<a class="login100-form-btn" type="submit" href="/view/farmerPrediction.html">
+						<a class="login100-form-btn" type="submit" href="/view/warehouseSignup.html" style="text-decoration: none;">
 							Login
 						</a>
 
@@ -102,8 +102,9 @@
 	const db = getFirestore(app);
 	const auth = getAuth();
 	const wareHouseColRef = collection(db, 'warehouse')
-	loginForm.addEventListener('click', (e) => {
+	loginForm.addEventListener('submit', (e) => {
 		event.preventDefault();
+		localStorage.setItem('loggedIn', true);
 		console.log(loginForm);
 		const loginEmail = loginForm.elements["loginEmail"].value;
 		const loginPassword = loginForm.elements["loginPassword"].value;
@@ -111,11 +112,10 @@
 		console.log(loginEmail, loginPassword);
 		signInWithEmailAndPassword(auth, loginEmail, loginPassword)
 			.then((userCredential) => {
-				localStorage.setItem('loggedIn', true);
 				console.log("HELLO: " + userCredential.user.uid);
 				var user = userCredential.user;
 				const uid = userCredential.user.uid;
-				console.log(uid, "bsdk");
+				// console.log(uid, "bsdk");
 				localStorage.setItem('uid', uid);
 				const userRef = doc(wareHouseColRef, uid);
 

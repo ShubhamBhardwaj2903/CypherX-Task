@@ -12,7 +12,7 @@
 <body>
 
     <div class="limiter">
-        <div class="container-login100">
+        <div class="container-login100" >
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
                     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -21,35 +21,35 @@
                         autoplay></lottie-player>
                 </div>
 
-                <form class="login100-form validate-form">
+                <form class="login100-form validate-form" id="signUp">
                     <span class="login100-form-title" style="font-family: Poppins;">
                         Register Now
                     </span>
 
                     <div class="wrap-input100 validate-input">
-                        <input class="input100" type="text" name="name" placeholder="Owner Name"
+                        <input class="input100" type="text" id="name" name="name" placeholder="Owner Name"
                             style="font-family: Poppins;">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input">
-                        <input class="input100" type="text" name="pass" placeholder="Contact Number"
+                        <input class="input100" type="text"id="phone" name="phone" placeholder="Contact Number"
                             style="font-family: Poppins;">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input">
-                        <input class="input100" type="text" placeholder="City" style="font-family: Poppins;">
+                        <input class="input100" type="text" id="city" placeholder="City" style="font-family: Poppins;">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input">
-                        <input class="input100" type="text" placeholder="State" style="font-family: Poppins;">
+                        <input class="input100" type="text" id="state" placeholder="State" style="font-family: Poppins;">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input">
-                        <input class="input100" type="text" name="email" placeholder="Email"
+                        <input class="input100" type="text" id="email" name="email" placeholder="Email"
                             style="font-family: Poppins;">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="wrap-input100 validate-input">
-                        <input class="input100" type="password" name="pass" placeholder="Password"
+                        <input class="input100" type="password" id="password" name="pass" placeholder="Password"
                             style="font-family: Poppins;">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <a class="login100-form-btn" href="/view/farmerPrediction.html" style="font-family: Poppins;" id="signUp">
+                        <a class="login100-form-btn" href="/view/warehouse/warehouse-login.html" style="font-family: Poppins;text-decoration: none;" type="submit">
                             Register
                         </a>
                     </div>
@@ -76,7 +76,7 @@
                         <span class="txt1" style="font-family: Poppins;">
                             Already have an account?
                         </span>
-                        <a class="txt2" href="../Views/warehouse-login.html" style="font-family: Poppins;">
+                        <a class="txt2" href="/view/warehouse/warehouse-login.html" style="font-family: Poppins;">
                             Login
                         </a>
                     </div>
@@ -97,25 +97,54 @@
     
 </body>
 <script type="module" >
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
+	import { getFirestore, setDoc, addDoc, updateDoc, deleteDoc, getDocs, doc, collection } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js";
+	import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+	const signUp = document.getElementById("signUp");
+	var loginForm = document.getElementById("loginForm");
+	// var loginEmailField = document.getElementById("loginEmail").value;
+	// var loginPasswordField = document.getElementById("loginPassword").value;
+	// var messageDiv = document.getElementById("message");
+	var warehousedataForm = document.querySelector("#warehousedataForm");
+	localStorage.removeItem('loggedIn');
+	const logOut = document.querySelector('.logout')
 
+	console.log("hello");
+	// Your web app's Firebase configuration
+	const firebaseConfig = {
+		apiKey: "AIzaSyCMsJalWUl6wUV_FD4C44TRF8rjBgK5Nic",
+		authDomain: "pravidhi-f594d.firebaseapp.com",
+		databaseURL: "https://pravidhi-f594d-default-rtdb.firebaseio.com",
+		projectId: "pravidhi-f594d",
+		storageBucket: "pravidhi-f594d.appspot.com",
+		messagingSenderId: "381566880784",
+		appId: "1:381566880784:web:3fc0de71affe76c2088e95"
+	};
 
-signUp.addEventListener('click', (e) => {
+	// Initialize Firebase
+	const app = initializeApp(firebaseConfig);
+	const db = getFirestore(app);
+	const auth = getAuth();
+	const wareHouseColRef = collection(db, 'warehouse')
+
+signUp.addEventListener('submit', (e) => {
+    event.preventDefault();
     var crops = [];
-    var Name = document.getElementById('name').value;
-    var address = document.getElementById('address').value;
+    var name = document.getElementById('name').value;
+    // var address = document.getElementById('address').value;
     var city = document.getElementById('city').value;
     var state = document.getElementById('state').value
     var email = document.getElementById('email').value;
-    var soilType = document.getElementById('phone').value;
+    var phone = document.getElementById('phone').value;
     var password = document.getElementById('password').value;
     // var cropsWheat = document.getElementById('crops-wheat').value;
     // var cropsCorn = document.getElementById('crops-corn').value;
     // var cropsRice = document.getElementById('crops-rice').value;
-    var certificate = document.getElementById('certificate').value;
-    var governmentId = document.getElementById('government-id').value;
+    // var certificate = document.getElementById('certificate').value;
+    // var governmentId = document.getElementById('government-id').value;
 
 
-    console.log(Name, address, city, state, email, soilType, password, governmentId);
+    console.log(name, city, state, email, password);
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log("HELLO: " + userCredential.user.uid);
@@ -126,15 +155,15 @@ signUp.addEventListener('click', (e) => {
 
 
             setDoc(userDocRef, {
-                Name: Name,
-                address: address,
+                name: name,
+                // address: address,
                 city: city,
                 state: state,
                 email: email,
-                soilType: soilType,
+                ContactNo: phone,
                 password: password,
-                certificate: certificate,
-                governmentId: governmentId
+                // certificate: certificate,
+                // governmentId: governmentId
             })
 
             alert('user created!');

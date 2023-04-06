@@ -314,8 +314,11 @@
 			.then(() => {
 				console.log("user signedOut");
 				localStorage.removeItem('loggedIn');
-			})
-			.catch((err) => {
+				localStorage.removeItem('farmerAddress');
+				localStorage.removeItem('farmerContact');
+				localStorage.removeItem('farmerName');
+				localStorage.removeItem('uid');	
+			}).catch((err) => {
 				console.log("User signedOut");
 			})
 	});
