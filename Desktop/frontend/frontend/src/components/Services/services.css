@@ -1,0 +1,65 @@
+.section1 {
+    background-color: #FFFCE2;
+    padding: 80px 0px;
+}
+
+.service_title {
+    font-weight: 600;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.service-tag {
+    font-weight: 600;
+    margin: 16px 0px 8px;
+}
+
+.service-desc {
+    font-size: 14px;
+    text-align: center;
+}
+
+.service {
+    margin: 16px;
+    flex: 1;
+    max-width: 200px;
+    text-align: center;
+}
+
+.service_section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Media queries for screens greater than 768px */
+@media (min-width: 769px) {
+    .service_section {
+        flex-direction: row;
+    }
+}
+
+/* Media queries for screens 768px or smaller */
+@media (max-width: 768px) {
+    .service_title {
+        font-size: 28px;
+        margin-bottom: 24px;
+    }
+    .service {
+        max-width: 100%;
+        margin: 8px;
+        flex: none;
+    }
+    .service_section {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .service:nth-child(odd) {
+        width: 100%;
+    }
+    .service:nth-child(even) {
+        width: 100%;
+    }
+}

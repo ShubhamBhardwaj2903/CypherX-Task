@@ -1,0 +1,41 @@
+.app-title {
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 48px;
+    text-align: center;
+}
+
+.app-sub-title {
+    font-size: 16px;
+    color: #505050;
+    text-align: center;
+    margin: 16px 0px 48px;
+}
+.app-imgs{
+    gap: 64px;
+}
+
+.app img {
+    width: 75px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.app-name {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+
+  }
+  
+  @media (max-width: 480px) {
+    .app-title{
+        font-size: 28px;
+    }
+    .app-imgs{
+        flex-direction: column;
+    }
+  }
